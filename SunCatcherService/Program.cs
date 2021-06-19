@@ -22,9 +22,9 @@ namespace SunCatcherService
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<IImageParametersBuilder>(); //(new ImageParametersBuilder());
-                    services.AddSingleton<ICameraPi>();  //((provider) => new CameraPiModule(provider.GetRequiredService<IImageParametersBuilder>()));
-                    services.AddSingleton<ISunCatcherWorkerService>(); // ((provider) => new SunCatcherWorkerService(provider.GetRequiredService<ICameraPi>()));
+                    services.AddSingleton<IImageParametersBuilder>(new ImageParametersBuilder());
+                    services.AddSingleton<ICameraPi>((provider) => new CameraPiModule(provider.GetRequiredService<IImageParametersBuilder>()));
+                    services.AddSingleton<ISunCatcherWorkerService>((provider) => new SunCatcherWorkerService(provider.GetRequiredService<ICameraPi>()));
                     services.AddHostedService<Worker>();
                 });
     }

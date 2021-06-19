@@ -1,0 +1,1 @@
+/home/pi/.dotnet/dotnet publish SunCatcher.sln -f net5.0 -r linux-arm
