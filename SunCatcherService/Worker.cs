@@ -11,10 +11,12 @@ namespace SunCatcherService
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly ISunCatcherWorkerService _sunCatcherWorkerService;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, ISunCatcherWorkerService sunCatcherWorkerService)
         {
             _logger = logger;
+            _sunCatcherWorkerService = sunCatcherWorkerService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -22,6 +24,7 @@ namespace SunCatcherService
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                _sunCatcherWorkerService.DoYourStuff();
                 await Task.Delay(1000, stoppingToken);
             }
         }
