@@ -24,4 +24,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: my-docker-hub-namespace/my-docker-hub-repository:latest
+          tags: orinachum/:counter-imagelatest
