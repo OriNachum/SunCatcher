@@ -33,3 +33,4 @@ jobs:
         with:
           push: true
           tags: orinachum/counter-image:latest
+          dockerfile: ./SunCatcherService/Dockerfile
